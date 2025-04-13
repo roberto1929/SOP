@@ -1,8 +1,8 @@
-#include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-#include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/types.h>
+#include <stdlib.h>
 
 int main() {
     int n = 5;  // Variável inicializada com 5
