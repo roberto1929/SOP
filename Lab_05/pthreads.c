@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
+#include<unistd.h>
 
 typedef struct {
     int idx, length;
@@ -29,5 +30,6 @@ int main(int argc, char **argv) {
     for(i = 0; i < 2; i++) {
       //  pthread_join(threads[i], NULL);
     }
+    sleep(1); //tentativa de realizar o lab, sem usar mutex 
     return 0;
 }

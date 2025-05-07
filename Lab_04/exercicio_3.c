@@ -17,22 +17,18 @@ int main() {
         printf("> ");
         fgets(input, MAX_INPUT, stdin);
         
-        // Remove newline character
         input[strcspn(input, "\n")] = 0;
         
-        // Verifica se é comando para sair
         if (strcmp(input, "sair") == 0) {
             break;
         }
         
-        // Verifica se é comando em background
         background = 0;
         if (input[strlen(input)-1] == '&') {
             background = 1;
-            input[strlen(input)-1] = 0; // Remove o '&'
+            input[strlen(input)-1] = 0; 
         }
         
-        // Tokeniza o comando
         int i = 0;
         token = strtok(input, " ");
         while (token != NULL) {
@@ -41,17 +37,15 @@ int main() {
         }
         args[i] = NULL;
         
-        // Cria processo filho
         pid_t pid = fork();
         
-        if (pid == 0) { // Processo filho
+        if (pid == 0) { 
             execve(args[0], args, NULL);
-            // Se execve retornar, houve erro
             perror("execve");
             exit(EXIT_FAILURE);
-        } else if (pid > 0) { // Processo pai
+        } else if (pid > 0) { 
             if (!background) {
-                waitpid(pid, NULL, 0); // Espera se não for background
+                waitpid(pid, NULL, 0); 
             }
         } else {
             perror("fork");
