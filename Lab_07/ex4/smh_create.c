@@ -21,10 +21,26 @@ int main(void)
        }
  
        /* create the shared memory segment: */
-       if ((shmid = shmget(key, SHM_SIZE, 0644 | IPC_CREAT )) == -1) {
+       if ((shmid = shmget(key, SHM_SIZE, 0644)) == -1) {
             perror("shmget");
             exit(1);
        }
+
+       struct shmid_ds buf;
+       
+       if ((shmctl(shmid,IPC_STAT, &buf)) == -1)
+       {
+          perror("shmct1");
+       }
+       
+       if (shmtl(shmid,IPC_RMID, &buf) == -1)
+       {
+          perror("smhctl");
+          return -1;
+       } 
+
+       // enviar o id que foi pego, e depois destruir ele
+       
  
        return(0);
 }
