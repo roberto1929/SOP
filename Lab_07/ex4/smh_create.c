@@ -39,8 +39,6 @@ int main(void)
           return -1;
        } 
 
-       // enviar o id que foi pego, e depois destruir ele
-       
  
        return(0);
 }
