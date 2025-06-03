@@ -7,10 +7,12 @@ Compilar com gcc -Wall filosofos-none.c -o filosofos-none -lpthread
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
-
+#include <semaphore.h>
 #define NUMFILO 5
 
 pthread_t filosofo [NUMFILO] ;	// threads filosofos
+
+sem_t hashi[NUMFILO];
 
 // espaços para separar as colunas de impressão
 char *space[] = {"", "\t", "\t\t", "\t\t\t", "\t\t\t\t" } ;
@@ -54,6 +56,8 @@ void larga_hashi (int f, int h)
 void *threadFilosofo (void *arg)
 {
   int i = (long int) arg ;
+  int dir = i;
+  int esq = (i+1) % NUMFILO;
   while (1)
   {
     medita (i) ;
